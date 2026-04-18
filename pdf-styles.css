@@ -1,0 +1,128 @@
+@page {
+    size: A4;
+    margin: 2.5cm 2cm 2.5cm 2cm;
+
+    @bottom-right {
+        content: counter(page);
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 0.8rem;
+        color: #63666A;
+    }
+}
+
+:root {
+    --accent-clr: #BD3133;
+    --link-clr: #2E71B1;
+    --text-clr: black;
+    --color-note: #0969da;
+    --color-tip: #1a7f37;
+    --color-important: #8250df;
+    --color-alert-background: #F3F3F3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: var(--text-clr);
+}
+
+/* Hide sidebar and navigation — not relevant in PDF */
+#sidebar, nav {
+    display: none;
+}
+
+main {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.75em;
+    margin-top: 0.5em;
+    color: var(--accent-clr);
+    page-break-after: avoid;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-top: 1.5em;
+    border-bottom: 1px solid #888;
+    padding-bottom: 0.2em;
+    page-break-after: avoid;
+}
+
+h3, h4 {
+    font-size: 1.1rem;
+    margin-top: 1.25em;
+    page-break-after: avoid;
+}
+
+p {
+    margin-top: 0.5em;
+}
+
+a {
+    color: var(--link-clr);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul, ol {
+    margin-top: 0.5em;
+    margin-left: 2em;
+}
+
+ol li {
+    margin-top: 0.3rem;
+}
+
+h2 + p, h3 + p, h4 + p {
+    page-break-before: avoid;
+}
+
+/* Alert styling */
+
+.alert {
+    padding: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background-color: var(--color-alert-background);
+    border-left: 0.25em solid #888;
+    page-break-inside: avoid;
+}
+
+.alert .alert-title {
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+    line-height: 1;
+}
+
+.alert .alert-title em {
+    font-weight: 200;
+    margin-left: 10px;
+}
+
+.alert .alert-title .icon-svg {
+    margin-right: 0.5rem;
+    fill: currentColor;
+}
+
+.alert-tip { border-left-color: var(--color-tip); }
+.alert-note { border-left-color: var(--color-note); }
+.alert-important { border-left-color: var(--color-important); }
+
+p.alert-title-tip, .alert.alert-tip svg { color: var(--color-tip); fill: var(--color-tip); }
+p.alert-title-note, .alert.alert-note svg { color: var(--color-note); fill: var(--color-note); }
+p.alert-title-important, .alert.alert-important svg { color: var(--color-important); fill: var(--color-important); }

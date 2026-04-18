@@ -1,0 +1,403 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --backgroun-clr: #D9D9D6;
+    --base-clr: white;
+    --line-clr: #63666A;
+    --hover-clr: #D9D9D6;
+    --active-clr: #F3F3F3;
+    --active-text-clr: black;
+    --text-clr: black;
+    --accent-clr: #BD3133;
+    --secondary-text-clr: #BD3133;
+    --link-clr: #2E71B1;
+    
+    --color-note: #0969da;
+    --color-tip: #1a7f37;
+    --color-warning: #9a6700;
+    --color-severe: #bc4c00;
+    --color-caution: #d1242f;
+    --color-important: #8250df;
+    --color-alert-background: #F3F3F3;
+}
+
+html{
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.5rem;
+    background-image: url('images/user-guide-background.png');
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-color: var(--backgroun-clr);
+}
+
+body{
+    min-height: 100vh;
+    min-height: 100dvh;
+    color: var(--text-clr);
+    display: grid;
+    grid-template-columns: auto 1fr; 
+}
+
+img {
+    max-width: 100%;  /* Image will not exceed its container's width */
+    height: auto;     /* Maintain aspect ratio */
+    display: block;   /* Prevent inline spacing issues */
+}
+
+a:link, a:visited {
+    color: var(--link-clr)
+}
+
+/* Sidebar container */
+#sidebar {
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh; /* Full viewport height */
+    width: 325px;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    overflow-y: auto;  /* Enables vertical scroll */
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+}
+
+#sidebar li {
+    padding-top: .2em;
+    padding-bottom: .2em;
+}
+
+/* Sidebar link sytling */
+#sidebar a {
+    text-decoration: none;
+    color: var(--text-clr);
+    transition: background 0.3s, text-decoration 0.3s;
+    line-height: 1;
+}
+
+/* Bold the home link text */
+#sidebar div.home-wrapper a {
+    color: var(--accent-clr);
+}
+#sidebar div.home-wrapper svg {
+    fill: var(--accent-clr);
+}
+
+/* Bold the main areas such as PATH, START, FLEX, etc */
+#sidebar div.section-wrapper {
+    padding-left: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+    color: var(--accent-clr);
+}
+
+#sidebar div.section-wrapper a {
+    color: var(--accent-clr);
+}
+
+/* --- HOVER STYLES --- */
+
+#sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* Fix underline issue not displaying for section menu items */
+#sidebar .section-menu a:hover {
+    text-underline-offset: 0.25em;
+}
+
+/* Fix underline issue not displaying for section menu items */
+#sidebar .sub-menu a:hover {
+    text-underline-offset: 0.1em;
+}
+
+.h1-wrapper:hover, #sidebar .sub-menu a:hover, #sidebar .home-wrapper:hover {
+    background-color: var(--hover-clr);
+}
+
+#sidebar .sub-menu li:hover {
+    background-color: var(--hover-clr);
+}
+
+/* --- END HOVER STYLES --- */
+
+/* Remove list style and set indenting */
+#sidebar ul.section-menu {
+    list-style: none;
+    margin-left: 1.5em;
+}
+
+#sidebar ul.sub-menu {
+    list-style: none;
+    margin-left: 2.5em;
+}
+
+/* Scrollbar styling */
+#sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+/* End scrollbar sytling */
+
+#sidebar ul div.active {
+    background-color: var(--active-clr);
+    font-weight: bold;
+}
+
+#sidebar li.h2.viewing {
+    background-color: var(--active-clr);
+    font-weight: bold;
+}
+
+
+
+button.icon-btn {
+    margin-left: 10px;
+}
+
+.dropdown-btn, .icon-btn {
+ /*   width: 100%;*/
+    text-align: left;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    align-items: center;
+}
+
+
+
+#sidebar svg{
+    flex-shrink: 0;
+    fill: var(--text-clr);
+}
+
+/* #sidebar a span, #sidebar .dropdown-btn span {
+    flex-grow: 1;
+}
+*/
+
+/* #sidebar a:hover, #sidebar .dropdown-btn:hover{
+    background-color: var(--hover-clr);
+} */
+#sidebar .sub-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 300ms ease-in-out;
+/* This div overflow allows the sub-menu to be hidden */
+   > div{
+        overflow: hidden;
+    }
+} 
+
+/* #sidebar .sub-menu, #sidebar .section-menu {
+    display: none;
+    transition: 300ms ease-in-out;
+}  */
+
+#sidebar .sub-menu.show, #sidebar .section-menu.show {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: 300ms ease-in-out;
+}
+
+.dropdown-btn svg {
+    transition: 200ms ease;
+}
+
+.rotate svg{
+    rotate: 90deg;
+}
+/* Fix alignment of buttons */
+
+.home-wrapper {
+    display: flex; /* Enable flexbox for alignment */
+    align-items: center; /* Vertically align items in the center */
+    gap: 5px; /* Add spacing between the button and the text */
+    cursor: pointer; /* Ensure the wrapper behaves like a button when clicked */
+}
+
+.h1-wrapper {
+    display: flex; /* Enable flexbox for alignment */
+    align-items: center; /* Vertically align items in the center */
+    gap: 0; /* Add spacing between the button and the text */
+    cursor: pointer; /* Ensure the wrapper behaves like a button when clicked */
+}
+
+.h1-wrapper button {
+    display: flex; /* Ensure the button's content is aligned */
+    align-items: center; /* Center the SVG icon within the button */
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove default button padding */
+    margin: 0; /* Remove margin to avoid misalignment */
+    cursor: pointer; /* Add pointer cursor for interactivity */
+}
+
+.h1-wrapper button svg, .home-wrapper button svg {
+    width: 24px; /* Set a consistent width for the icon */
+    height: 24px; /* Set a consistent height for the icon */
+    flex-shrink: 0; /* Prevent the icon from shrinking */
+}
+/* Remove margin/padding to avoid misalignment */
+/*.menu-wrapper a {
+    margin: 0; 
+    padding: 0;
+}
+    */
+
+.h1-wrapper span, .home-wrapper span {
+    font-size: inherit; /* Inherit font size from the link */
+    vertical-align: middle; /* Vertically align the text */
+}
+
+/* Remove margin/padding to avoid misalignment */
+/*
+.menu-wrapper button,
+.menu-wrapper a,
+.menu-wrapper span {
+    margin: 0;
+    padding: 0;
+} */
+
+/* Main content styling */
+
+main {
+    background-color: var(--base-clr);
+    margin: 0px 5em 0px 1em;
+    padding: 10px 50px 10px 50px;
+}
+
+@media (min-width: 1500px) {
+    main {
+        margin: 0px 15em 0px 8em; /* Increase margins for large screens */
+    }
+}
+
+@media (max-width: 1000px) {
+
+    main {
+        margin: 0px 1em 0px 1em; /* Reduce padding on smaller screens */
+    }
+}
+
+h1{
+    margin-bottom: 1em;
+    margin-top: .5em;
+}
+
+h2, h3, h4 {
+    margin-top: 1.25em;
+}
+
+p {
+    margin-top: .5em;
+}
+
+main ul, main ol {
+    margin-top: .5em;
+    margin-left: 2em;
+}
+
+h2 {
+    border-bottom: 1px solid #888;
+}
+
+li img {
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+ol li {
+    margin-top: 0.3rem;
+}
+
+ol li ul li, ol li ul {
+    margin-top: 0;
+}
+
+/* ALERT STYLING */
+
+.alert {
+  padding: 1.25rem 1rem 1rem 1rem;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  color: inherit;
+  background-color: var(--color-alert-background);
+  border-left: .25em solid #888;
+}
+
+.alert>:first-child {
+  margin-top: 0
+}
+
+.alert>:last-child {
+  margin-bottom: 0
+}
+
+.alert .alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.alert .alert-title em {
+  font-weight: 200;
+  margin-left: 10px;
+}
+
+.alert .alert-title .icon-svg {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.alert-note {
+  border-left-color: var(--color-note);
+}
+
+.alert-important {
+  border-left-color: var(--color-important);
+}
+
+p.alert-title-tip {
+    color: var(--color-tip)
+}
+
+.alert.alert-tip svg {
+    fill: var(--color-tip)
+}
+
+p.alert-title-note {
+    color: var(--color-note)
+}
+
+.alert.alert-note svg {
+    fill: var(--color-note)
+}
+
+p.alert-title-important {
+    color: var(--color-important)
+}
+
+.alert.alert-important svg {
+    fill: var(--color-important)
+}
